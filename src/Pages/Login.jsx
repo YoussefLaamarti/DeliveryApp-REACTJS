@@ -1,11 +1,12 @@
 import React from 'react'
 import {useState} from 'react'
-
-
+import axios from 'axios'
+import Forbidden from './Forbidden'
+import checker from '../Components/utility/checker'
 
 function Login() {
 
-    const [token, setToken] = useState('')
+  
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     
@@ -23,8 +24,8 @@ function Login() {
       }else{
         log()
 
+        
         //trying to afficher this token
-        console.log(token)
 
    
 
@@ -40,25 +41,30 @@ function Login() {
    formData.append("username", username);
    formData.append("password", password);
 
- const requestOptions = {
-  method: 'POST',
-  mode: 'no-cors',
+
+const log = async () => {
+try {
+ let rep = await axios.post("http://localhost:7070/login",formData)
  
-  body: formData
+ 
+  localStorage.setItem("token",rep.data["access-token"])
+  
+  document.location.href = "/"
+}catch(e){
 
-};
-const log = async () => { const Response = await fetch('http://localhost:7070/login', requestOptions)
+  console.log("errrrr")
+}
 
-setToken(Response.json())
 }
 
     
 
 
-
+if(checker() === ''){
   return (
 
     <center>
+      
          
     <div className='w-full max-w-xs'>
   <form  onSubmit={handleSubmit} className='   rounded px-8 pt-6 pb-8 mb-4'>
@@ -88,6 +94,10 @@ setToken(Response.json())
 
 </center>
   )
+}else{
+  return(<Forbidden/>)
+}
+ 
 }
 
 export default Login

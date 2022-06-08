@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React from 'react'
 import {useState} from 'react'
 
@@ -21,14 +22,18 @@ function PackageCreation() {
     const [textStreet, setTextStreet] = useState('')
     const handleChangeStreet =(e) => setTextStreet(e.target.value)
 
-    const handleSubmit = (e) =>{
+
+    const [uuid, setUuid] = useState('')
+
+
+    const handleSubmit = async (e) =>{
         e.preventDefault()
     
         if(textname === '' || textCity === '' || textZipcode === '' || textStreet === '' ){
           alert('enter something')
       }else{
        
-        go()
+        add()
 
         setTextname('')
         setTextCity('')
@@ -39,18 +44,21 @@ function PackageCreation() {
       }
       }
 
+     async function add (){ 
 
-       //Create the package
-       const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-            package_name: textname,
-            city: textCity,
-            zipcode: textZipcode,
-            street: textStreet, })
-    };
-    function  go() { fetch('http://localhost:7070/box', requestOptions)}
+      let rep = await  axios.post('http://localhost:7070/box', { 
+      package_name: textname,
+      city: textCity,
+      zipcode: textZipcode,
+      street: textStreet})
+
+      
+      setUuid(rep.data.code)
+      
+     }       
+     
+  
+  
         
 
 
@@ -58,8 +66,17 @@ function PackageCreation() {
 
 
     return (
+
+      
+      <center>
         <form className='w-full max-w-sm' onSubmit={handleSubmit}>
-  <div className='md:flex md:items-center mb-6'>
+          {uuid !== "" ? <div className="alert alert-success shadow-lg">
+  <div>
+    <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+    <span> <b> {uuid} </b></span>
+  </div>
+</div> : null }
+  <div className='md:flex md:items-center  mt-6 mb-6'>
     <div className='md:w-1/3'>
       <label className='block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4' htmlFor='inline-full-name'>
         Package Name
@@ -112,7 +129,9 @@ function PackageCreation() {
     </div>
   </div>
 </form>
+</center>
       )
 }
+
 
 export default PackageCreation
