@@ -9,13 +9,13 @@ function HomeDeliv() {
     const [boxes , setBoxes] = useState([])
     const [loading , setLoading ] = useState(true)
     const [userid , setuserid] = useState([])
-    
+
     let user = userchecker()
 
     
 
     const fetchBoxes = async (tee) => {
-      const response = await axios.get('http://localhost:7070/customer/user/'+tee)
+      const response = await axios.get('http://localhost:7070/delivery/d/'+tee)
   
 
   

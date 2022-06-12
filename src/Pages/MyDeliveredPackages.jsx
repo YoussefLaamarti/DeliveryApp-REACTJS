@@ -10,12 +10,13 @@ function HomeDeliv() {
     const [loading , setLoading ] = useState(true)
     const [userid , setuserid] = useState([])
     
+    
     let user = userchecker()
 
     
 
     const fetchBoxes = async (tee) => {
-      const response = await axios.get('http://localhost:7070/customer/user/'+tee)
+      const response = await axios.get('http://localhost:7070/delivery/do/'+tee)
   
 
   
@@ -41,7 +42,7 @@ function HomeDeliv() {
           
             <div>
               <center>
-                 <p className='text-5xl mb-8'><b>Your Packages</b></p>
+                 <p className='text-5xl mb-8'><b>Your Delivered Packages</b></p>
                  </center>
                 {boxes.map((box) => (
               <Boxitem key={box.code} box={box} userid={userid}/>

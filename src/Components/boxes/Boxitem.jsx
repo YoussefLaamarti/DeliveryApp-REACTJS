@@ -1,16 +1,61 @@
 
 import PropTypes from 'prop-types'
 import checker from '../utility/checker'
-import {Link} from 'react-router-dom'
-import AffectDeliv from '../../Pages/AffectDeliv'
+import axios from '../utility/axos';
 
-function BoxItem({ box }) {
+import  {  useState  } from 'react';
 
 
-  const handleClick = (code) => {
 
-    alert(code)
-  }
+
+function BoxItem({ box , userid } ) {
+  const [boxes , setBoxes] = useState([])
+  let idid = userid.id
+  
+
+
+
+//affect
+const affectationBoxToDelivery = async (id,id_delibv) => {
+  await axios.put('http://localhost:7070/box/ud/'+id+'/'+id_delibv)
+//reload page
+document.location.reload()
+}
+
+//affect
+const updatebox = async (stat , id ) => {
+  await axios.put('http://localhost:7070/box/us/'+id, { 
+  
+   status: stat,
+})
+//reload page
+document.location.reload()
+}
+
+
+
+  //Affect Box
+  const affect = (b) => {
+    
+
+    affectationBoxToDelivery(b,idid)
+
+
+  
+
+}
+
+//update box
+const update = (b , id ) => {
+    
+  updatebox(b,id)
+
+
+
+
+
+}
+
 
 
 
@@ -25,33 +70,46 @@ function BoxItem({ box }) {
           </div>
         </div>
         <div>
-          
-          <h2 className='card-title h-20 text-green-200'>{box.package_name}</h2>
-          <b><h1 className='  text-red-200  '>{'Status : '}</h1></b>
-          <b><h1 className='  text-green-200 h-10'>{box.status }</h1></b>
-          <b><h1 className='  text-red-200  '>{'UUID : '}</h1></b>
-          <b><h1 className='  text-green-200 h-10'>{box.code }</h1></b>
+        
+          <h2 className='card-title h-10 mb-4 text-yellow-300'><b>{box.package_name}</b></h2>
+          <ul className ='steps'>
+            {box.status === 'NOT_YET_DELIVERED' ? <>
+            <li className='step step-primary text-green-300'><i><b>NOT YET DELIVERED</b></i></li>
+            <li className='step text-white  '><i><b>IN PROGRESS</b></i></li>
+            <li className='step text-white '><i><b>DELIVERED</b></i></li>
+            </>
+            : null}
+            
+           </ul>
+           <ul className='steps'>
+            {box.status === 'IN_PROGRESS' ? <>
+            <li className='step step-primary text-white '><i><b>NOT YET DELIVERED</b></i></li>
+            <li className='step step-primary text-green-300'><i><b>IN PROGRESS</b></i></li>
+            <li className='step text-white'><i><b>DELIVERED</b></i></li>
+            </>
+            : null}
+            
+           </ul>
+           <ul className='steps'>
+            {box.status === 'DELIVERED' ? <>
+            <li className='step step-primary text-white'><i><b>NOT YET DELIVERED</b></i></li>
+            <li className='step step-primary text-white'><i><b>IN PROGRESS</b></i></li>
+            <li className='step step-primary text-green-300'><i><b>DELIVERED</b></i></li>
+            </>
+            : null}
+            
+           </ul>
+          <b><h1 className='  text-red-300 mt-10 '>{'UUID : '}</h1></b>
+          <b><h1 className='   text-white h-10'>{box.code }</h1></b>
           {box.status === 'DELIVERED' ? <> 
-          <b><h1 className='  text-red-200  '>{'Delivered on  : '}</h1></b>
-          <b><h1 className='  text-green-200 h-16'>{ new Date(box.date).toDateString()}</h1></b>
+          <b><h1 className='  text-red-300  '>{'Delivered on  : '}</h1></b>
+          <b><h1 className='   text-white h-16'>{ new Date(box.date).toDateString()}</h1></b>
           </> : null}
      
          {checker() == 'DELIVERY_MAN' ?   <div>
-<a href='#my-modal-2' class='btn'>More Details</a>
+    <button  onClick={() => affect(box.id)} className='btn btn-success mr-2'  >AFFECT</button>
+    <button  onClick={() => update('2' , box.id)} className='btn btn-error mr-2'  >DELIVER</button>
 
-<div className='modal' id='my-modal-2'>
-  <div className='modal-box'>
-    <h3 className='font-bold text-lg text-red-300 mb-5'>Package Details</h3>
-    <b><p className='py-2 text-red-100'>NAME : {box.package_name}</p></b>
-    <b><p className='py-2 text-red-100'>CITY : {box.city} </p></b>
-    <b><p className='py-2 text-red-100 '>STREET : {box.street}</p></b>
-    <b><p className='py-2 text-red-100'>ZIPCODE : {box.zipcode}</p></b>
-    <div className='modal-action'>
-    <button  onClick={() => handleClick(box.code)} className='btn btn-success'  >AFFECT</button>
-     <a href='#' className='btn btn-error'>PASS</a>
-    </div>
-  </div>
-</div>
 </div> : null}
          
 
@@ -65,6 +123,7 @@ function BoxItem({ box }) {
 
 BoxItem.propTypes = {
   box: PropTypes.object.isRequired,
+  userid: PropTypes.object.isRequired,
 }
 
 export default BoxItem
