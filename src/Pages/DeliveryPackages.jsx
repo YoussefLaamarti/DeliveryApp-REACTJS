@@ -11,7 +11,7 @@ function HomeDeliv() {
     const [userid , setuserid] = useState([])
 
     let user = userchecker()
-
+    let etat = 'd'
     
 
     const fetchBoxes = async (tee) => {
@@ -44,7 +44,7 @@ function HomeDeliv() {
                  <p className='text-5xl mb-8'><b>Your Packages</b></p>
                  </center>
                 {boxes.map((box) => (
-              <Boxitem key={box.code} box={box} userid={userid}/>
+              <Boxitem key={box.code} box={box} userid={userid} etat={etat}/>
             ))}
             
             

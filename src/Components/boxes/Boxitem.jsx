@@ -2,17 +2,29 @@
 import PropTypes from 'prop-types'
 import checker from '../utility/checker'
 import axios from '../utility/axos';
+import {  toast } from 'react-toastify';
+
 
 import  {  useState  } from 'react';
 
 
 
 
-function BoxItem({ box , userid } ) {
+function BoxItem({ box , userid , etat } ) {
   const [boxes , setBoxes] = useState([])
   let idid = userid.id
   
-
+  const notify = () => toast.success(' Package Delivered!', {
+    position: "top-right",
+    autoClose: 5000,
+    theme: "dark",
+    hideProgressBar: true,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    bodyClassName: "dark",
+    });;
 
 
 //affect
@@ -47,8 +59,11 @@ document.location.reload()
 
 //update box
 const update = (b , id ) => {
-    
-  updatebox(b,id)
+  notify()
+  setTimeout(() => {
+    updatebox(b,id)
+  }, 1000)
+  
 
 
 
@@ -60,8 +75,8 @@ const update = (b , id ) => {
 
 
   return (
-    <div className='card   bg-base-100'>
-      <div className='flex-row items-center space-x-4 card-body'>
+    <div className='card animate__animated  animate__fadeInUp   bg-base-100'>
+      <div className='flex-row  items-center space-x-4 card-body'>
         <div>
           <div className='avatar'>
             <div className=' shadow w-14 h-14'>
@@ -106,10 +121,18 @@ const update = (b , id ) => {
           <b><h1 className='   text-white h-16'>{ new Date(box.date).toDateString()}</h1></b>
           </> : null}
      
-         {checker() == 'DELIVERY_MAN' ?   <div>
+         {checker() == 'DELIVERY_MAN' && etat == 'a' ?   <div>
     <button  onClick={() => affect(box.id)} className='btn btn-success mr-2'  >AFFECT</button>
-    <button  onClick={() => update('2' , box.id)} className='btn btn-error mr-2'  >DELIVER</button>
+  
 
+</div> : null}
+{checker() == 'DELIVERY_MAN' && !etat ?   <div>
+
+</div> : null}
+
+{checker() == 'DELIVERY_MAN' && etat == 'd' ?   <div>
+    <button  onClick={() => update('2' , box.id) } className='btn btn-error mr-2'  >DELIVER</button>
+    
 </div> : null}
          
 
@@ -124,6 +147,9 @@ const update = (b , id ) => {
 BoxItem.propTypes = {
   box: PropTypes.object.isRequired,
   userid: PropTypes.object.isRequired,
+  etat: PropTypes.object.isRequired
 }
 
 export default BoxItem
+
+//onClick={() => update('2' , box.id)}

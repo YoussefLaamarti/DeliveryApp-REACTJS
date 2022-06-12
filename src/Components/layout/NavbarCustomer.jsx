@@ -22,7 +22,7 @@ let user = userchecker()
        
   
        <Link to='/logout' className='btn btn-primary btn-sm rounded-btn'> Logout</Link>
-       <div className='text-lg font-bold align-middle ml-6'>welcome {user}</div>
+      
        </div>  
 </div>
 

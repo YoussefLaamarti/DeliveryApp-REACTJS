@@ -3,6 +3,8 @@ import {useState} from 'react'
 import axios from 'axios'
 import Forbidden from './Forbidden'
 import checker from '../Components/utility/checker'
+import {toast} from 'react-toastify'
+
 
 function Login() {
 
@@ -20,7 +22,8 @@ function Login() {
         
     
         if(username === '' || password === ''){
-          alert('fill the forms')
+          toast.warning(' fill the forms' ,{theme :'dark'} )
+
       }else{
         log()
 
@@ -52,10 +55,10 @@ try {
   document.location.href = "/"
 }catch(e){
 
-  console.log("errrrr")
-}
+  toast.error('Credentials Incorrect' ,{theme :'dark'} )
 
-}
+
+}}
 
     
 

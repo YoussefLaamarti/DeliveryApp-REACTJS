@@ -18,15 +18,15 @@
 
 .box{
     
-    background-image: url(../public/img/img12.png);
+    background-image: url(./Components/assets/imgimg.jpg);
     background-size: 100%;
     background-position: 20%;
-    width: 50%;
+    width: 100%;
     background-repeat: no-repeat;
     
    
     padding: 15%;
-    margin: 1%;
+   
     
 }
 

@@ -57,7 +57,7 @@ const YourDelieveriesCounter = async (xx) => {
        <Link to='/DelivPackages' className='btn  btn-sm rounded-btn'> My Delivered Packages</Link>
        <Link to='/' className='btn  btn-sm rounded-btn'> Home</Link>
        <Link to='/logout' className='btn btn-primary ml-5 btn-sm rounded-btn'> logout</Link>
-       <div className='text-lg text-purple-300 font-bold align-middle ml-6'>welcome {user}</div>
+       
       
        </div>  
 </div>
