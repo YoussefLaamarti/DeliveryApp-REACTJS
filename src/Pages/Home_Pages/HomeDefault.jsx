@@ -1,5 +1,6 @@
 import React from 'react'
-import SearchForm from '../Components/layout/SearchForm'
+import SearchForm from '../../Components/layout/SearchForm'
+
 
 
 function HomeDefault() {

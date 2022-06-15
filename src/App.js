@@ -1,17 +1,15 @@
 import {BrowserRouter as Router,Route,Routes} from 'react-router-dom'
 
 import Footer from './Components/layout/Footer';
-import Home from './Pages/Home';
-import Aboutus from './Pages/Aboutus';
-import Whatwedo from './Pages/Whatwedo';
-import Hiring from './Pages/Hiring';
+import Home from './Pages/Home_Pages/Home';
+
 import Notfound from './Pages/Notfound';
 import Login from './Pages/Login';
-import HomeDeliv from './Pages/HomeDeliv';
+import HomeDeliv from './Pages/Home_Pages/HomeDeliv';
 import PackageCreation from './Pages/PackageCreation';
 import CustomerCreation from './Pages/CustomerCreation';
 import Affectation from './Pages/Affectation'
-import ParentNavbar from './Components/layout/ParentNavbar'; 
+import ParentNavbar from './Components/layout/Navbars/ParentNavbar'; 
 import Logout from './Pages/Logout';
 import DeliveryPackages from './Pages/DeliveryPackages'
 import MyDeliveredPackages from './Pages/MyDeliveredPackages'
@@ -29,10 +27,10 @@ function App() {
         <main className='container mx-auto px-3 pb-12'>
 
         <Routes>
-        <Route path='/aboutus' element={<Aboutus />} />
+       
         <Route path='/' element={<Home />} />
-        <Route path='/whatwedo' element={<Whatwedo />} />
-        <Route path='/Hiring' element={<Hiring />} />
+      
+      
         <Route path='/notfound' element={<Notfound />} />
         <Route path='/*' element={<Notfound />} />
         <Route path='/login' element={<Login />} />

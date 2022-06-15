@@ -2,7 +2,7 @@ import React from 'react'
 import {FaGlobeAfrica} from 'react-icons/fa'
 import {Link} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import userchecker from '../utility/userchecker'
+import userchecker from '../../utility/userchecker'
 
 function Navbar({ title }) {
 

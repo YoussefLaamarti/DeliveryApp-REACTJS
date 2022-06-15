@@ -46,7 +46,7 @@ function PackageCreation() {
 
      async function add (){ 
 
-      let rep = await  axios.post('http://localhost:7070/box', { 
+      let rep = await  axios.post('/box', { 
       package_name: textname,
       city: textCity,
       zipcode: textZipcode,
@@ -69,6 +69,7 @@ function PackageCreation() {
 
       
       <center>
+         <p className='text-5xl mb-16'><b>Create Package</b></p>
         <form className='w-full max-w-sm' onSubmit={handleSubmit}>
           {uuid !== "" ? <div className="alert alert-success shadow-lg">
   <div>

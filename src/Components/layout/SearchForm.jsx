@@ -34,7 +34,7 @@ function SearchForm() {
 
     //get search results
     const SearchBoxes = async (tee) => {
-      const response = await fetch('http://localhost:7070/box/ref/'+tee)
+      const response = await fetch('/box/ref/'+tee)
       if(response.status >= 400){
         toast.error('code not found' ,{theme :'dark'} )
         return

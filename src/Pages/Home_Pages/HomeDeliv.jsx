@@ -1,9 +1,9 @@
 import React from 'react'
 import  { useState , useEffect } from 'react';
-import Boxitem from '../Components/boxes/Boxitem';
-import Spinner from '../Components/layout/Spinner';
-import axios from '../Components/utility/axos';
-import userchecker from '../Components/utility/userchecker'
+import Boxitem from '../../Components/boxes/Boxitem';
+import Spinner from '../../Components/layout/Spinner';
+import axios from '../../Components/utility/axos';
+import userchecker from '../../Components/utility/userchecker'
 
 function HomeDeliv() {
     const [boxes , setBoxes] = useState([])
@@ -25,7 +25,7 @@ function HomeDeliv() {
 
 
       const Userid = async (tee) => {
-        const response = await axios.get('http://localhost:7070/delviery/uuu/'+tee)
+        const response = await axios.get('/delviery/uuu/'+tee)
     
         
     
@@ -40,7 +40,7 @@ function HomeDeliv() {
 
 
     const fetchBoxes = async () => {
-        const response = await axios.get('http://localhost:7070/pendingboxes')
+        const response = await axios.get('/pendingboxes')
     
 
     
@@ -59,7 +59,7 @@ function HomeDeliv() {
     
     if(!loading){
       
-      if(boxes.length == 0){
+      if(boxes.length === 0){
         return (
 
       <div class="alert alert-info  shadow-lg">

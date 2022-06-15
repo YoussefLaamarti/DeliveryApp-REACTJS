@@ -69,7 +69,7 @@ const requestOptions = {
         email: textemail,
         phone_number: textphone })
 };
-function  createuser() { fetch('http://localhost:7070/customer', requestOptions)}
+function  createuser() { fetch('/customer', requestOptions)}
 
 
 
@@ -83,6 +83,9 @@ if(checker() !== 'SELLER'){
 } 
 return (
   <center>
+  
+                 <p className='text-5xl mb-16'><b>Create Customer</b></p>
+                 
     <form className='w-full max-w-sm' onSubmit={handleSubmit}>
       {email !== "" ?<div className="alert mb-6  alert-success shadow-lg">
   <div>

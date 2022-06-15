@@ -3,8 +3,8 @@ import {FaGlobeAfrica} from 'react-icons/fa'
 import  {  useState , useEffect } from 'react';
 import {Link} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import userchecker from '../utility/userchecker'
-import axios from '../utility/axos'
+import userchecker from '../../utility/userchecker'
+import axios from '../../utility/axos'
 function Navbar({ title , test }) {
  
  
@@ -23,7 +23,7 @@ function Navbar({ title , test }) {
 
 
 const YourDelieveriesCounter = async (xx) => {
-  const response = await axios.get('http://localhost:7070/delivery/d/'+xx)
+  const response = await axios.get('/delivery/d/'+xx)
 
   let box=response.data.length
   

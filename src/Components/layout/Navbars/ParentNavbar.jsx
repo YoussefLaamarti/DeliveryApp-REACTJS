@@ -4,25 +4,25 @@ import NavbarSeller from './NavbarSeller'
 import Navbar from './Navbar'
 import NavbarCustomer from './NavbarCustomer'
 
-import checker from '../utility/checker'
+import checker from '../../utility/checker'
 
 function ParentNavbar() {
   let role = checker()
     
 
-    if(role == 'DELIVERY_MAN')
+    if(role === 'DELIVERY_MAN')
   return (
     <NavbarDelivery/>
   )
-  if(role == '')
+  if(role === '')
   return (
     <Navbar/>
   )
-  if(role == 'SELLER')
+  if(role === 'SELLER')
   return (
     <NavbarSeller/>
   )
-  if(role == 'CUSTOMER')
+  if(role === 'CUSTOMER')
   return (
     <NavbarCustomer/>
   )

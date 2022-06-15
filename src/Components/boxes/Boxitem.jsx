@@ -29,14 +29,14 @@ function BoxItem({ box , userid , etat } ) {
 
 //affect
 const affectationBoxToDelivery = async (id,id_delibv) => {
-  await axios.put('http://localhost:7070/box/ud/'+id+'/'+id_delibv)
+  await axios.put('/box/ud/'+id+'/'+id_delibv)
 //reload page
 document.location.reload()
 }
 
 //affect
 const updatebox = async (stat , id ) => {
-  await axios.put('http://localhost:7070/box/us/'+id, { 
+  await axios.put('/box/us/'+id, { 
   
    status: stat,
 })

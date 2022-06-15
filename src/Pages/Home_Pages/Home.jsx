@@ -1,8 +1,9 @@
 import React from 'react'
-import checker from '../Components/utility/checker'
-import HomeDefault from './HomeDefault'
-import HomeDeliv from './HomeDeliv'
-import HomeCustomer from './HomeCustomer'
+import checker from '../../Components/utility/checker'
+import HomeDefault from '../Home_Pages/HomeDefault'
+import HomeDeliv from '../Home_Pages/HomeDeliv'
+import HomeCustomer from '../Home_Pages/HomeCustomer'
+import CustomerCreation from '../CustomerCreation'
 
 function Home() {
   
@@ -23,7 +24,7 @@ function Home() {
 
   if(role === 'SELLER')
   return (
-    <HomeDefault/>
+    <CustomerCreation/>
   )
 
 

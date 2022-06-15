@@ -53,7 +53,7 @@ function CustomerCreation() {
 
 //get package id 
 const boxid = async (tee) => {
-    const response = await fetch('http://localhost:7070/box/ref/'+tee)
+    const response = await fetch('/box/ref/'+tee)
     
     const data = await response.json()
    
@@ -63,7 +63,7 @@ const boxid = async (tee) => {
 
 //get Customer id
 const custid = async (vv) => {
-    const response = await fetch('http://localhost:7070/customer/c/'+vv)
+    const response = await fetch('/customer/c/'+vv)
     
     const data = await response.json()
    
@@ -73,7 +73,7 @@ const custid = async (vv) => {
 
 //Affect them
 const affectation = async (bid,cid) => {
-   await fetch('http://localhost:7070/box/uc/'+bid+'/'+cid, { 
+   await fetch('/box/uc/'+bid+'/'+cid, { 
     method: 'PUT',
   
 
@@ -90,6 +90,7 @@ setSucces(true)
 
 return (
     <center>
+       <p className='text-5xl mb-16'><b>Affect a User to a Package</b></p>
     <form className='w-full max-w-sm' onSubmit={handleSubmit}>
     {succes !== false ?<div className="alert mb-6  alert-success shadow-lg">
   <div>

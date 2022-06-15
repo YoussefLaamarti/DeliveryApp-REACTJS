@@ -1,6 +1,6 @@
 import React from 'react'
 
-import CustomerPackages from './CustomerPackages'
+import CustomerPackages from '../CustomerPackages'
 
 
 function HomeDefault() {

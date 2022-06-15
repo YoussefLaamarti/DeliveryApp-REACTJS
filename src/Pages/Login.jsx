@@ -47,7 +47,7 @@ function Login() {
 
 const log = async () => {
 try {
- let rep = await axios.post("http://localhost:7070/login",formData)
+ let rep = await axios.post("/login",formData)
  
  
   localStorage.setItem("token",rep.data["access-token"])

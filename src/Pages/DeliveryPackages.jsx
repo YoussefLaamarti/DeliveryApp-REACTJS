@@ -15,7 +15,7 @@ function HomeDeliv() {
     
 
     const fetchBoxes = async (tee) => {
-      const response = await axios.get('http://localhost:7070/delivery/d/'+tee)
+      const response = await axios.get('/delivery/d/'+tee)
   
 
   
