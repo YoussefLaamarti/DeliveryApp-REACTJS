@@ -47,16 +47,6 @@ function CustomerCreation() {
   };
 
   //get Customer id
-  /*
-  const custid = async (vv) => {
-    const response = await axios.get("/customer/c/" + vv);
-
-    const data = await response.json();
-    alert(2);
-    console.log(data);
-    return data.id;
-  };
-*/
 
   const custid = async (vv) => {
     const response = await axios.get("/customer/c/" + vv);
